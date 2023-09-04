@@ -1,0 +1,10 @@
+server_url: wss://<target_server>
+username: <username>
+hashed_password: <hashed_password>
+my_curtains_names: [<curtain_name1>, <curtain_name2>, <curtain_name3>]
+
+
+
+
+
+

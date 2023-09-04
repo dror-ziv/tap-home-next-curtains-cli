@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+
+message NestedNestedDevice {
+    fixed64 Field1 = 1;
+}
+
+message NestedDevice {
+    NestedNestedDevice field103 = 103;
+}
+
+message Device {
+    int32 maybeCurtainId = 1;
+    string deviceName = 2;
+    string attributeName = 3;
+    NestedDevice field4 = 4;
+}
+
+message SetDeviceCommand {
+    int32 setLevelTo = 1;
+    Device field101 = 101;
+}
+
+
+
+message LoginCommand {
+    message InnerLoginCommand{
+        message UnknownInner {
+            fixed64 field1 = 1;
+            fixed64 field2 = 2;
+        }
+
+
+        UnknownInner field1 = 1;
+        string Email = 2;
+        string HashedPassword = 3;
+        string Platform = 4;
+        string AppVersion = 5;
+        string DeviceId = 6;
+        string DeviceInformation = 7;
+        int32 field10 = 10;
+    }
+    InnerLoginCommand field108 = 108;
+}
+
+
+message LoginResponse{
+    message Field109{
+
+    }
+    int32 Field1 = 1;
+
+}
