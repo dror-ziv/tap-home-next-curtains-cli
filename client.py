@@ -64,7 +64,6 @@ async def _connect_and_setup(settings: TapHomeClientSettings) -> list[Curtain]:
         my_curtains = _filter_target_curtains(
             parsed_response, settings.my_curtains_names
         )
-        set_my_curtains_cache(my_curtains)
         print("Setup Completed Successfully")
         return my_curtains
 

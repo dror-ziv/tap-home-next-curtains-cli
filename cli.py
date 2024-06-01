@@ -7,7 +7,7 @@ from client import (
     _validate_cache,
     _connect_and_send_commands,
 )
-from settings import load_from_config, CurtainLevel, load_my_curtains_from_cache
+from settings import load_from_config, CurtainLevel, load_my_curtains_from_cache, set_my_curtains_cache
 
 
 def main():
@@ -17,7 +17,8 @@ def main():
     arg = sys.argv[1].lower()
 
     if arg == "setup":
-        asyncio.get_event_loop().run_until_complete(_connect_and_setup(settings))
+        curtains = asyncio.get_event_loop().run_until_complete(_connect_and_setup(settings))
+        set_my_curtains_cache(curtains)
         return
 
     if arg == "up":
