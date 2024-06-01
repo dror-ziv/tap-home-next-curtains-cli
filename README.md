@@ -6,16 +6,16 @@ This is a simple CLI tool for controlling TapHome curtains.
 pip install -r requirements.txt
 ```
 * fill config.yaml file with your credentials
-* run `main.py setup`
+* run `cli.py setup`
 
 ### recommended
-* add `alias up="python3 /path/to/main.py up"` to your .bashrc or .zshrc file
+* add `alias up="python3 /path/to/cli.py up"` to your .bashrc or .zshrc file
 
 ## Usage
 ```bash
-python3 main.py up
-python3 main.py down
-python3 main.py setup
+python3 cli.py up
+python3 cli.py down
+python3 cli.py setup
 ```
 
 ## commands
