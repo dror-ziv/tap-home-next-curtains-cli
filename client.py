@@ -15,7 +15,7 @@ from settings import (
     Curtain,
     CurtainLevel,
     load_my_curtains_from_cache,
-    set_my_curtains_cache,
+    set_my_curtains_cache, query_cache_curtains, is_curtain_names_in_curtains,
 )
 
 
@@ -99,8 +99,13 @@ def _validate_cache(my_curtains_names: list[str]):
 def set_curtains(
     curtains: list[str], settings: TapHomeClientSettings, level: CurtainLevel
 ):
-    settings.my_curtains_names = curtains
-    curtains = asyncio.get_event_loop().run_until_complete(_connect_and_setup(settings))
+    cached_curtains = query_cache_curtains(curtains)
+    if not is_curtain_names_in_curtains(curtains, cached_curtains):
+        print("cache miss, querying curtains")
+        settings.my_curtains_names = curtains
+        curtains_to_set = asyncio.get_event_loop().run_until_complete(_connect_and_setup(settings))
+    else:
+        curtains_to_set = cached_curtains
     asyncio.get_event_loop().run_until_complete(
-        _connect_and_send_commands(settings=settings, level=level, curtains=curtains)
+        _connect_and_send_commands(settings=settings, level=level, curtains=curtains_to_set)
     )

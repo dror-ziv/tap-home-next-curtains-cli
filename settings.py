@@ -59,6 +59,23 @@ def set_my_curtains_cache(curtains: list[Curtain]) -> None:
         json.dump(config_data, config_file, indent=4)
 
 
+def is_curtain_names_in_curtains(curtain_names: list[str], cache_curtains: list[Curtain])-> bool:
+    cached_names = [curtain.name for curtain in cache_curtains]
+    for curtain in curtain_names:
+        if curtain not in cached_names:
+            return False
+    return True
+
+
+def query_cache_curtains(curtain_names: list[str])-> list[Curtain]:
+    cache = load_my_curtains_from_cache()
+    result = []
+    for target_curtain in curtain_names:
+        for cached_curtain in cache:
+            if target_curtain == cached_curtain.name:
+                result.append(cached_curtain)
+    return result
+
 class CurtainLevel(Enum):
     UP = 92
     DOWN = 6
