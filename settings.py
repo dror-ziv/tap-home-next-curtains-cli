@@ -4,7 +4,7 @@ import os
 from enum import Enum
 
 from pydantic import BaseModel, Field
-from pydantic.v1 import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class TapHomeClientSettings(BaseSettings):

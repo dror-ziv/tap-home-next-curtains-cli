@@ -6,3 +6,4 @@ protobuf-decoder
 pyyaml
 pydantic
 pytest
+pydantic_settings
